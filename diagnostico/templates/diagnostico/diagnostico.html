@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnóstico del Motor</title>
+    <link rel="stylesheet" href="{% static 'css/diagnostico.css' %}">
+</head>
+<body>
+
+    <header class="header">
+        <h1>Diagnóstico del Motor</h1>
+        <p>Responde unas preguntas para identificar posibles causas del problema.</p>
+    </header>
+
+    <main class="container">
+
+        <!-- Zona de interacción principal -->
+        <section class="main-panel">
+            <div class="question-card">
+                <h2 id="question">¿El motor hace ruidos extraños al encender?</h2>
+
+                <div class="answers">
+                    <button class="btn-answer">Sí</button>
+                    <button class="btn-answer">No</button>
+                    <button class="btn-answer">No lo sé</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Panel lateral con progreso y tips -->
+        <aside class="sidebar">
+            <div class="progress">
+                <h3>Progreso</h3>
+                <p>Pregunta <span id="current">1</span> de <span id="total">5</span></p>
+            </div>
+
+            <div class="tips">
+                <h3>💡 Tip útil</h3>
+                <p>Antes de continuar, revisa si hay fugas de aceite visibles o humo al encender el motor.</p>
+            </div>
+        </aside>
+
+    </main>
+
+    <!-- Sección de resultados -->
+    <section class="results" id="results">
+        <div class="result-card">
+            <h2>Posible diagnóstico</h2>
+            <p>Tu motor podría tener un problema con el sistema de encendido.</p>
+            <p><strong>Recomendación:</strong> Revisa las bujías o lleva el vehículo a un taller especializado.</p>
+            <div class="buttons">
+                <button class="btn-main">Ver guía de mantenimiento</button>
+                <button class="btn-secondary">Volver al inicio</button>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>

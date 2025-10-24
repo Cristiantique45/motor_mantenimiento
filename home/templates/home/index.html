@@ -1,0 +1,68 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Asistente de mantenimiento del motor</title>
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+
+<body>
+  <header>
+    <h1>Asistente de mantenimiento del motor</h1>
+    <p>Tu guía interactiva para diagnosticar y cuidar el motor de tu vehículo.</p>
+  </header>
+
+  <main class="contenedor-principal">
+    <!-- Columna izquierda -->
+    <section class="columna izquierda">
+      <div class="inicio">
+        <!-- <a href="#" class="btn">Iniciar diagnóstico</a> -->
+        <a href="{% url 'diagnostico' %}" class="btn-diagnostico">Iniciar diagnóstico<a>
+
+      </div>
+
+      <section class="categorias">
+        <h2>¿Qué tipo de problema presenta tu vehículo?</h2>
+        <div class="grid">
+          <div class="card">
+            <h3>🔊 Ruidos extraños</h3>
+            <p>Chirridos, golpeteos o sonidos inusuales.</p>
+          </div>
+          <div class="card">
+            <h3>💨 Humo o gases</h3>
+            <p>Humo negro, blanco o azul en el escape.</p>
+          </div>
+          <div class="card">
+            <h3>⚡ Problemas eléctricos</h3>
+            <p>El motor no enciende o hay fallos de batería.</p>
+          </div>
+          <div class="card">
+            <h3>🛢️ Aceite y mantenimiento</h3>
+            <p>Fugas, nivel bajo o cambio de aceite.</p>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- Columna derecha (tips educativos) -->
+    <aside class="columna derecha">
+      <h3>Consejos rápidos</h3>
+      <ul class="tips">
+        <li>Revisa el aceite al menos una vez al mes.</li>
+        <li>No ignores ruidos extraños del motor.</li>
+        <li>Mantén limpio el filtro de aire.</li>
+        <li>Evita acelerar el motor en frío.</li>
+      </ul>
+    </aside>
+
+  </main>
+
+  <footer>
+    <p>© 2025 MotorCare | Creado por Cris Pacho</p>
+  </footer>
+</body>
+
+</html>

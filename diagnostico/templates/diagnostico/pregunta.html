@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnóstico del Motor</title>
+    <link rel="stylesheet" href="{% static 'css/diagnostico.css' %}">
+</head>
+<body>
+
+<header class="header">
+    <h1>Diagnóstico del Motor</h1>
+    <p>Responde unas preguntas para identificar posibles causas del problema.</p>
+</header>
+
+<main class="container">
+
+    <!-- Zona de interacción principal -->
+    <section class="main-panel">
+        <div class="question-card">
+            {% if question %}
+                <h2 id="question">{{ question.texto }}</h2>
+
+                <div class="answers">
+                    {% for answer in question.respuestas.all %}
+                        <a href="?a={{ answer.id }}">
+                            <button class="btn-answer">{{ answer.texto }}</button>
+                        </a>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <h2>No hay más preguntas disponibles.</h2>
+            {% endif %}
+        </div>
+    </section>
+
+    <!-- Panel lateral con progreso y tips -->
+    <aside class="sidebar">
+        <div class="progress">
+            <h3>Progreso</h3>
+            <p>Pregunta actual</p>
+        </div>
+
+        <div class="tips">
+            <h3>💡 Tip útil</h3>
+            <p>Revisa si hay fugas de aceite visibles o humo al encender el motor.</p>
+        </div>
+    </aside>
+
+</main>
+
+</body>
+</html>
