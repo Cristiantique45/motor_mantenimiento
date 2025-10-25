@@ -20,10 +20,10 @@ def diagnostico(request):
     result = tree.get_next(answer_id)
 
     if result['type'] == 'question':
+        print("RESULTADO DE get_next:", result)
         return render(request, 'diagnostico/pregunta.html', {'question': result['object']})
 
     if result['type'] == 'diagnosis':
-        print("RESULTADO DE get_next:", result)
         # result['object'] es un string con el diagnóstico final
         return render(request, 'diagnostico/resultado.html', {'diagnosis': result['object']})
 
