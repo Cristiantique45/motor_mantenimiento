@@ -4,8 +4,9 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Resultado del Diagnóstico</title>
-    <!-- <link rel="stylesheet" href="{% static 'css/diagnostico.css' %}"> -->
+    <link rel="stylesheet" href="{% static 'css/diagnostico.css' %}">
 </head>
 
 <body>
@@ -15,11 +16,11 @@
             <h2>Posible diagnóstico</h2>
             <p>{{ diagnosis }}</p>
 
-            <!-- <div class="buttons">
+            <div class="buttons">
                 <a href="{% url 'diagnostico' %}">
                     <button class="btn-secondary">Volver al inicio</button>
                 </a>
-            </div> -->
+            </div>
         </div>
     </section>
 

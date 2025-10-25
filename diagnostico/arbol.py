@@ -1,46 +1,56 @@
-# from .models import Pregunta, Respuesta
-
-# class DecisionTree:
-#     def __init__(self):
-#         # obtenemos la pregunta raíz
-#         self.root = Pregunta.objects.filter(is_root=True).first()
-
-#     def get_next(self, current_question, answer):
-#         """
-#         Recibe la pregunta actual y la respuesta del usuario (True/False o 'si'/'no'),
-#         y devuelve la siguiente pregunta o el diagnóstico final.
-#         """
-#         if answer in [True, 'si', 'sí', 'SI', 'SÍ']:
-#             next_question = current_question.next_if_yes
-#         else:
-#             next_question = current_question.next_if_no
-
-#         if next_question:
-#             return {'type': 'question', 'object': next_question}
-#         elif current_question.diagnosis:
-#             return {'type': 'diagnosis', 'object': current_question.diagnosis}
-#         else:
-#             return {'type': 'end', 'object': None}
-
-
-# decision_tree.py
-# from .models import Pregunta, Respuesta
-
-# class DecisionTree:
-#     def __init__(self):
-#         self.root = Pregunta.objects.filter(is_root=True).first()
-
-#     def get_next(self, answer_id):
-#         answer = Respuesta.objects.get(id=answer_id)
-#         if answer.siguiente_pregunta_id:
-#             return {'type': 'question', 'object': answer.siguiente_pregunta_id}
-#         elif answer.diagnostico_final:
-#             return {'type': 'diagnosis', 'object': answer.diagnostico_final}
-#         else:
-#             return None
-
 from .models import Pregunta, Respuesta
 from django.core.exceptions import ObjectDoesNotExist
+
+
+# Clase Nodo y Arbol adaptadas desde Nodo.py
+class Nodo:
+    def __init__(self, valor):
+        self.valor = valor
+        self.izq = None
+        self.der = None
+
+
+class Arbol:
+    def __init__(self):
+        self.raiz = None
+
+    def insertar(self, valor):
+        if self.raiz is None:
+            self.raiz = Nodo(valor)
+        else:
+            self._insertar_ordenar(self.raiz, valor)
+
+    def _insertar_ordenar(self, nodo_actual, valor):
+        # Inserción por comparación; adecuado cuando los valores son comparables
+        if valor < nodo_actual.valor:
+            if nodo_actual.izq is None:
+                nodo_actual.izq = Nodo(valor)
+            else:
+                self._insertar_ordenar(nodo_actual.izq, valor)
+        else:
+            if nodo_actual.der is None:
+                nodo_actual.der = Nodo(valor)
+            else:
+                self._insertar_ordenar(nodo_actual.der, valor)
+
+    def inorden(self, nodo, visit=lambda x: print(x)):
+        if nodo:
+            self.inorden(nodo.izq, visit)
+            visit(nodo.valor)
+            self.inorden(nodo.der, visit)
+
+    def preorden(self, nodo, visit=lambda x: print(x)):
+        if nodo:
+            visit(nodo.valor)
+            self.preorden(nodo.izq, visit)
+            self.preorden(nodo.der, visit)
+
+    def postorden(self, nodo, visit=lambda x: print(x)):
+        if nodo:
+            self.postorden(nodo.izq, visit)
+            self.postorden(nodo.der, visit)
+            visit(nodo.valor)
+
 
 class DecisionTree:
     def __init__(self):
